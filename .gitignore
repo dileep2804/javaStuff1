@@ -1,2 +1,8 @@
 # project iml file
 *.iml
+
+#idEA file
+.idea
+
+#output files
+out

@@ -15,12 +15,7 @@ public class M_Streams {
     public static void main(String[] args) {
         List<Person> personList = Person.getDefaultPersonList();
 
-        /*
-        personList.forEach(p -> System.out.println(p.getName() + ","+
-                p.getEducationDetails().stream().collect(groupingBy(e -> e.getEducation(),
-                        Collectors.mapping(ed -> ed.getCity(),Collectors.toList())))
-                +","+p.getEmailAddress()));
-         */
+        collectorUse(personList);
 
         for(Person p : personList){
             System.out.print(p.getName()+",");
@@ -54,6 +49,20 @@ public class M_Streams {
                     p -> System.out.print("["+p.getName()+","+p.getGender()+","+p.getEmailAddress()+"] "));
         }
 
+    }
+
+    private static void collectorUse(List<Person> personList){
+        System.out.println("in collectorUse: ");
+        personList.forEach(person -> System.out.println(person.getName()+","+person.getEducationDetails()));
+
+        List<Schooling> l1 = personList
+                .stream()
+                .map(person -> person.getEducationDetails())
+                .flatMap(educationDetails -> educationDetails.stream())
+                .collect(Collectors.toList());
+
+        System.out.println("\n");
+        l1.forEach(element -> System.out.println(element)); nl();
     }
 
     private static Education getPersonByEducation(Person p){

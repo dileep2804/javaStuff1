@@ -5,12 +5,20 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-public class Person {
+public class Person implements Comparable {
+
+    @Override
+    public int compareTo(Object o) {
+        return 0;
+    }
+
+
     public enum Sex {
         MALE("men"), FEMALE("women"), UNKNOWN("undefined");
         private Sex(String synonems){
@@ -63,7 +71,7 @@ public class Person {
     public Person() {
         this(
                 "default_name",
-                LocalDate.of(20001,1,1),
+                LocalDate.of(2001,1,1),
                 Sex.UNKNOWN,
                 "default@example.com",
                 new ArrayList<>(Arrays.asList(
